@@ -39,7 +39,7 @@ if st.session_state["authentication_status"]:
                     options = ["Accueil", "Photos"],
                     icons= ['house', 'camera']
                 )
-        st.page_link("https://github.com/One-Up-Dev/streamlit-part2", label="Code Source", icon=":material/code_blocks:")
+        st.page_link("https://github.com/One-Up-Dev/streamlit-part3", label="Code Source", icon=":material/code_blocks:")
 
 
 # ===================================================================================
