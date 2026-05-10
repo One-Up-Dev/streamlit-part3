@@ -5,30 +5,12 @@ from streamlit_option_menu import option_menu
 
 
 # ===================================================================================
-#   AUTHENTIFICATION
+#   AUTHENTIFICATION A PARTIR D'UN FICHIER CSV
 # ===================================================================================
 df = pd.read_csv("usernames.csv")
 
-# Nos données utilisateurs doivent respecter ce format
 lesDonneesDesComptes = {
-    'usernames': {
-        'utilisateur': {
-            'name': 'utilisateur',
-            'password': 'utilisateurMDP',
-            'email': 'utilisateur@gmail.com',
-            'failed_login_attemps': 0,  # Sera géré automatiquement
-            'logged_in': False,          # Sera géré automatiquement
-            'role': 'utilisateur'
-        },
-        'root': {
-            'name': 'root',
-            'password': 'rootMDP',
-            'email': 'admin@gmail.com',
-            'failed_login_attemps': 0,  # Sera géré automatiquement
-            'logged_in': False,          # Sera géré automatiquement
-            'role': 'administrateur'
-        }
-    }
+    "usernames": df.set_index("name").to_dict(orient="index")
 }
 
 authenticator = Authenticate(
@@ -40,11 +22,17 @@ authenticator = Authenticate(
 
 authenticator.login()
 
+# ===================================================================================
+#   SESSION APRES LOGIN
+# ===================================================================================
+
 if st.session_state["authentication_status"]:
- 
+    # ===================================================================================
+    #   SIDEBAR
+    # ===================================================================================
     with st.sidebar:
         authenticator.logout("Déconnexion")
-        st.write(f"Bienvenue")
+        st.write(f"Bienvenue {st.session_state['username']}")
         with st.container():
             selection = option_menu(
                     menu_title=None,
@@ -52,7 +40,9 @@ if st.session_state["authentication_status"]:
                     icons= ['house', 'camera']
                 )
 
-# On indique au programme quoi faire en fonction du choix
+# ===================================================================================
+#   GESTION DES PAGES
+# ===================================================================================
     if selection == "Accueil":
             st.title(f"Ma page d'accueil")
             st.image('images/ONEUP.png')
@@ -70,14 +60,14 @@ if st.session_state["authentication_status"]:
                 st.image("https://static.streamlit.io/examples/owl.jpg")
                
 
-
+# ===================================================================================
+#   GESTION D'aUTHENTIFICATION - CONDITION D'ERREUR
+# ===================================================================================
 
 elif st.session_state["authentication_status"] is False:
     st.error("L'username ou le password est/sont incorrect")
 elif st.session_state["authentication_status"] is None:
     st.warning('Les champs username et mot de passe doivent être remplie')
 
-# ===================================================================================
-#   SIDE BAR
-# ===================================================================================
+
 
