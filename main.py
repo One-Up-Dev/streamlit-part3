@@ -39,6 +39,8 @@ if st.session_state["authentication_status"]:
                     options = ["Accueil", "Photos"],
                     icons= ['house', 'camera']
                 )
+        st.page_link("https://github.com/One-Up-Dev/streamlit-part2", label="Code Source", icon=":material/code_blocks:")
+
 
 # ===================================================================================
 #   GESTION DES PAGES
@@ -68,6 +70,7 @@ elif st.session_state["authentication_status"] is False:
     st.error("L'username ou le password est/sont incorrect")
 elif st.session_state["authentication_status"] is None:
     st.warning('Les champs username et mot de passe doivent être remplie')
+
 
 
 
