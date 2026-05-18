@@ -32,7 +32,6 @@ if st.session_state["authentication_status"]:
     # ===================================================================================
     with st.sidebar:
         authenticator.logout("Déconnexion")
-        st.write(f"Bienvenue {st.session_state['username']}")
         with st.container():
             selection = option_menu(
                     menu_title=f"Bienvenue {st.session_state.get("username", '')}",
