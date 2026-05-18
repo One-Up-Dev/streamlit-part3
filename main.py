@@ -52,14 +52,14 @@ if st.session_state["authentication_status"]:
             st.title(f"Mon album photos")
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.header("A cat")
-                st.image("https://static.streamlit.io/examples/cat.jpg")
+                st.header("One-Up")
+                st.image("images/generated-image(3).png")
             with col2:
-                st.header("A dog")
-                st.image("https://static.streamlit.io/examples/dog.jpg")
+                st.header("One-Up")
+                st.image("images/generated-image(4).png")
             with col3:
-                st.header("An owl")
-                st.image("https://static.streamlit.io/examples/owl.jpg")
+                st.header("One-Up")
+                st.image("images/generated-image(5).png")
                
 
 # ===================================================================================
@@ -70,7 +70,3 @@ elif st.session_state["authentication_status"] is False:
     st.error("L'username ou le password est/sont incorrect")
 elif st.session_state["authentication_status"] is None:
     st.warning('Les champs username et mot de passe doivent être remplie')
-
-
-
-

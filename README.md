@@ -109,3 +109,7 @@ la solution a été trouvé avec l'aide de L'IA. Ce qui a eu pour effet d'avoir 
 df.set_index("name")
 ```
 
+
+#### Images qui ne s'affiche plus
+Les images étant uploader depuis internet, le projet était dépendant du site d'oùu elles provenaient, en l'occurence le site de streamlit.
+La solution : Upload les images directement depuis le dossier images/
